@@ -44,6 +44,8 @@ void check_and_alert(const float maxThreshold, struct Stats computedStats);
 
 void check_and_alert(const float maxThreshold, struct Stats computedStats)
 {
+	int emailAlertCallCount ;
+int	ledAlertCallCount;
 if (computedStats.max > maxThreshold)
 {
 	emailAlertCallCount = 1;
