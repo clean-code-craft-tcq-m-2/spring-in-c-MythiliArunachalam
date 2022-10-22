@@ -30,7 +30,7 @@ return(alerters);
 int main ()
 {
 	const float maxThreshold = 10.2;
-	float numberset[];
+	  float numberset[] = {1.5, 8.9, 3.2, 4.5};
 	int setlength = sizeof(numberset) / sizeof(numberset[0]);
 	struct Stats computedStats;
 	computedStats = compute_statistics(numberset, setlength);
