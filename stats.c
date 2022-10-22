@@ -15,29 +15,35 @@ struct Stats compute_statistics( const float numberset[], int setlength);
 
 int main ()
 {
-struct Stats computedStats;
-
-    computedStats = compute_statistics(numberset[], setlength); 
+	int alerters[] = {emailAlerter, ledAlerter};
+	const float maxThreshold = 10.2;
+	int led
+	float numberset[] = {1.5, 8.9, 3.2, 4.5};
+	int setlength = sizeof(numberset) / sizeof(numberset[0]);
+	struct Stats computedStats;
+	computedStats = compute_statistics(numberset, setlength);
+	alerters[0] = check_and_alert(maxThreshold,computedStats);
+	alerters[1] = check_and_alert(maxThreshold,computedStats);
+ 	return 0;
 }
 
-struct Stats compute_statistics( const float numberset[], int setlength) {
-    	struct Stats computedStats;
+struct Stats compute_statistics( const float numberset[], int setlength) 
+{
+    	struct Stats statinfo;
 	int i;
 	float numtotal;
 	float maxval;
 	float minval;
-	for (i=0; i<setlength; i++;)
+	for (i=0; i<setlength; i++)
 	{
 	numtotal = numberset[i] + numtotal;
 	maxval = (numberset[i] >= maxval) ? numberset[i] : maxval;
 	minval = (numberset[i] <= minval) ? numberset[i] : minval;
 	}
-	
-	computedStats.average = numtotal/setlength;
-    computedStats.max = maxval;
-    computedStats.min = minval;
-	return computedStats;
-	
+   statinfo.average = numtotal/setlength;
+   statinfo.max = maxval;
+   statinfo.min = minval;
+	return statinfo;
 }
 
 void check_and_alert(const float maxThreshold, struct Stats computedStats)
@@ -48,5 +54,6 @@ if (computedStats.max > maxThreshold)
 {
 	emailAlertCallCount = 1;
 	ledAlertCallCount = 1;
+	return(
 }
 }
