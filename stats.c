@@ -35,9 +35,7 @@ int main ()
 struct Stats computedStats;
 /*    int setlength = sizeof(numberset) / sizeof(numberset[0]);
     struct Stats computedStats = compute_statistics(numberset, setlength); */
-	computedStats = compute_statistics( float numberset[], int setlength);
-
-	
+	computedStats = compute_statistics(numberset[],setlength);
 }
 
 void check_and_alert(const float maxThreshold, struct Stats computedStats)
