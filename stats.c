@@ -23,7 +23,7 @@ struct Stats compute_statistics( const float numberset[], int setlength);
  }
 
 typedef void alerter_funcptr(const float maxThreshold, struct Stats computedStats);
-int check_and_alert(alerter_funcptr *alerters ,const float maxThreshold, struct Stats computedStats);
+int check_and_alert(alerter_funcptr *alerters ,const float maxThreshold, struct Stats computedStats)
 { 
 return(alerters);
 } 
