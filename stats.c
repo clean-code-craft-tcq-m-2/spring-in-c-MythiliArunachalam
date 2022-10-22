@@ -7,14 +7,14 @@ void check_and_alert(const float maxThreshold,*alerters, struct Stats computedSt
 
 struct Stats compute_statistics( const float numberset[], int setlength);
  
- void emailAlerterfunc( )
+ void emailAlerterfunc(const float maxThreshold,void alerters, struct computedStats)
  {
  if (computedStats.max > maxThreshold)
 	{
 	emailAlertCallCount = 1;
 	} 
  }
- void ledAlerterfunc( )
+ void ledAlerterfunc(const float maxThreshold,void alerters, struct computedStats)
  {
  if (computedStats.max > maxThreshold)
 	{
@@ -32,8 +32,6 @@ int main ()
 	struct Stats computedStats;
 	computedStats = compute_statistics(numberset, setlength);
 	alerter_funcptr alerters[] ={emailAlerter,ledAlerter};
-	emailAlerter = emailAlerterfunc();
-	ledAlerter ledAlerterfunc();
 	check_and_alert(maxThreshold,alerters,computedStats);
  	return 0;
 }
