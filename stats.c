@@ -14,6 +14,28 @@ int main ()
 	computedStats = compute_statistics(numberset, setlength);
  	return 0;
 }
+typedef void (*alerter_funcptr)();
+
+alerter_funcptr emailAlerter ;
+alerter_funcptr ledAlerter ;
+emailAlerter = check_and_alert(maxThreshold, alerters, computedStats);
+check_and_alert(maxThreshold, alerters, computedStats);
+
+  
+ void emailAlerter( const float maxThreshold, alerters, computedStats)
+ {
+ if (computedStats.max > maxThreshold)
+	{
+	emailAlertCallCount = 1;
+	} 
+ }
+ void ledAlerter( )
+ {
+ if (computedStats.max > maxThreshold)
+	{
+	ledAlertCallCount = 1;
+	} 
+ }
 struct Stats compute_statistics( const float numberset[], int setlength) 
 {
     	struct Stats statinfo;
