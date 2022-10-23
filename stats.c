@@ -3,18 +3,18 @@
 int emailAlertCallCount = 0;
 int ledAlertCallCount = 0;
 
-typedef void (alerter_funcptr *alerters, const float maxThreshold, struct Stats.computedStats);
+typedef void (alerter_funcptr *(alerters), const float maxThreshold, struct computedStats);
 
 struct Stats compute_statistics( const float numberset[], int setlength);
 
- void emailAlerter( const float maxThreshold, struct Stats.computedStats)
+ void emailAlerter( const float maxThreshold, struct computedStats)
  {
  if (computedStats.max > maxThreshold)
 	{
 	emailAlertCallCount = 1;
 	} 
  }
- void ledAlerter(const float maxThreshold, struct Stats.computedStats)
+ void ledAlerter(const float maxThreshold, struct computedStats)
  {
  if (computedStats.max > maxThreshold)
 	{
@@ -22,7 +22,7 @@ struct Stats compute_statistics( const float numberset[], int setlength);
 	} 
  }
 
-void check_and_alert (alerter_funcptr *alerters,const float maxThreshold, struct Stats.computedStats)
+void check_and_alert (alerter_funcptr *(alerters),const float maxThreshold, struct computedStats)
 {
 alerters(maxThreshold, Stats.computedStats);
 }
@@ -34,9 +34,10 @@ int main ()
 	int setlength = sizeof(numberset) / sizeof(numberset[0]);
 	struct Stats computedStats;
 	computedStats = compute_statistics(numberset, setlength);
-	alerter_funcptr alerters[] = {emailAlerter, ledAlerter};
-check_and_alert(&emailAlerter,maxThreshold,Stats.computedStats);
-check_and_alert(&ledAlerter,maxThreshold,Stats.computedStats);
+	alerter_funcptr alerters[0] = emailAlerter;
+	alerter_funcptr alerters[1] =  ledAlerter;
+check_and_alert(&emailAlerter,maxThreshold,computedStats);
+check_and_alert(&ledAlerter,maxThreshold,computedStats);
  	return 0;
 }
 
