@@ -21,7 +21,12 @@ struct Stats compute_statistics( const float numberset[], int setlength);
 	ledAlertCallCount = 1;
 	} 
  }
- 
+
+void check_and_alert (alerter_funcptr *alerters,const float maxThreshold, struct Stats computedStats)
+{
+alerters();
+}
+
 int main ()
 {
 	const float maxThreshold = 10.2;
@@ -30,15 +35,11 @@ int main ()
 	struct Stats computedStats;
 	computedStats = compute_statistics(numberset, setlength);
 	alerter_funcptr alerters[] = {emailAlerter, ledAlerter};
-check_and_alert(&emailAlerter,maxThreshold, computedStats);
-check_and_alert(&ledAlerter,maxThreshold, computedStats);
+check_and_alert(&emailAlerter,maxThreshold,Stats computedStats);
+check_and_alert(&ledAlerter,maxThreshold,Stats computedStats);
  	return 0;
 }
 
-
-
-
-  
 
 struct Stats compute_statistics( const float numberset[], int setlength) 
 {
