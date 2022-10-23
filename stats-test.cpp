@@ -32,7 +32,6 @@ TEST_CASE("raises alerts when max is greater than threshold") {
     typedef void alerter_funcptr(const float maxThreshold, struct Stats computedStats);
 	alerter_funcptr alerters[] = {emailAlerter, ledAlerter};
 	void check_and_alert(alerter_funcptr *alerters,float maxThreshold, struct Stats computedStats);
-	alerter_funcptr alerters[] = {emailAlerter, ledAlerter};
     float numberset[] = {99.8, 34.2, 4.5};
     int setlength = sizeof(numberset) / sizeof(numberset[0]);
     Stats computedStats = compute_statistics(numberset, setlength);
