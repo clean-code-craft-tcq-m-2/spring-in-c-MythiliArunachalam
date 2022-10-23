@@ -2,7 +2,6 @@
 
 #include "catch.hpp"
 #include "stats.h"
-#include "alert_func.h"
 
 #include <stdlib.h>
 #include <math.h>
@@ -27,10 +26,11 @@ TEST_CASE("average is NaN for empty array") {
     //Use https://stackoverflow.com/questions/1923837/how-to-use-nan-and-inf-in-c
 }
 
-/* TEST_CASE("raises alerts when max is greater than threshold") {
+TEST_CASE("raises alerts when max is greater than threshold") {
     // create additional .c and .h files
     // containing the emailAlerter, ledAlerter functions
-    typedef void alerter_funcptr(const float maxThreshold, struct computedStats);
+    typedef void alerter_funcptr(const float maxThreshold, struct Stats computedStats);
+	alerter_funcptr alerters[] = {emailAlerter, ledAlerter};
 	void check_and_alert(alerter_funcptr *alerters,float maxThreshold, struct Stats computedStats);
 	alerter_funcptr alerters[] = {emailAlerter, ledAlerter};
     float numberset[] = {99.8, 34.2, 4.5};
@@ -45,4 +45,4 @@ TEST_CASE("average is NaN for empty array") {
     // you can define call-counters along with the functions, as shown below
     REQUIRE(emailAlertCallCount == 1);
     REQUIRE(ledAlertCallCount == 1);
-} */
+}
